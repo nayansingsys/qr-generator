@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_scan_qr"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="Scan QR" />
+    <item
+        android:id="@+id/nav_generate_qr"
+        android:icon="?android:attr/fingerprintAuthDrawable"
+        android:title="Generate QR" />
+    <item
+        android:id="@+id/nav_list"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="List" />
+
+    <item
+        android:id="@+id/nav_note"
+        android:icon="?attr/actionModePasteDrawable"
+        android:title="Note" />
+</menu>

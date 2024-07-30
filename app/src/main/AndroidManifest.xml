@@ -27,6 +27,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QRGenerator"
         tools:targetApi="31">
+
+        <service
+            android:name=".Launcher"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".AutoStart"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".CalendarActivity"
             android:exported="false" />

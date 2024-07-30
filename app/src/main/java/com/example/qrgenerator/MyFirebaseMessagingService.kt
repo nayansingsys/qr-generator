@@ -25,6 +25,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
+        super.onMessageReceived(message)
+        /*
         if (message.notification != null) {
             sendNotification(
                 message.notification!!.title!!,
@@ -32,6 +34,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 message.notification!!.imageUrl
             )
         }
+
+         */
         //if(message.notification.imageUrl)
     }
 

@@ -1,6 +1,8 @@
 package com.example.qrgenerator
 
 import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,11 +21,24 @@ private const val TAG = "LoginActivity"
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var receiver: AutoStart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        startService(Intent(this, Launcher::class.java))
+        receiver = AutoStart()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(
+                receiver,
+                IntentFilter(Intent.ACTION_POWER_CONNECTED),
+                RECEIVER_NOT_EXPORTED
+            )
+        } else {
+            registerReceiver(receiver, IntentFilter(Intent.ACTION_POWER_CONNECTED))
+        }
 
         auth = Firebase.auth
 
@@ -112,6 +127,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(receiver)
+        super.onDestroy()
     }
 
 }
